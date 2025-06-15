@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page with Glow Effect</title>
+    <title>QQCC with Surrounding Boxes</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,79 +16,90 @@
             background-color: #f5f5f5;
         }
         
-        .qqcc-container {
+        .container {
             position: relative;
-            width: 1000px;
-            height: 700px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 900px; /* 800 (QQCC) + 50 + 50 */
+            height: 450px; /* 350 (QQCC) + 50 + 50 */
         }
         
+        /* White Boxes */
+        .white-box {
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Top box (A) */
+        .white-box.top {
+            width: 800px;
+            height: 50px;
+            top: 0;
+            left: 50px;
+        }
+        
+        /* Left box (B) */
+        .white-box.left {
+            width: 50px;
+            height: 350px;
+            top: 50px;
+            left: 0;
+        }
+        
+        /* Right box (C) */
+        .white-box.right {
+            width: 50px;
+            height: 350px;
+            top: 50px;
+            right: 0;
+        }
+        
+        /* Bottom box (D) */
+        .white-box.bottom {
+            width: 800px;
+            height: 50px;
+            bottom: 0;
+            left: 50px;
+        }
+        
+        /* QQCC Section */
         .qqcc-section {
-            display: flex;
+            position: absolute;
+            width: 800px;
+            height: 350px;
+            top: 50px;
+            left: 50px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 960px; /* 1000 - 20px padding each side */
-            height: 660px; /* 700 - 20px padding each side */
-            position: relative;
+            display: flex;
             z-index: 2;
         }
         
-        /* Glow effect elements */
+        /* Rotating Image Effect */
         .glow-effect {
             position: absolute;
-            width: 1100px;
-            height: 1100px;
+            width: 900px; /* Same as container */
+            height: 900px;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1;
+            transform: translate(-50%, -50%) rotate(0deg);
+            background-image: url('Images/glow-texture.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
             opacity: 0;
             transition: opacity 0.3s ease;
-        }
-        
-        .glow-image {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            animation: rotate 10s linear infinite;
-        }
-        
-        .glow-mask {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.8);
-            /* Creates a "hole" in the mask */
-            -webkit-mask-image: radial-gradient(
-                circle at center,
-                transparent 0%,
-                transparent 525px, /* 1050/2 (half of 1050px hole) */
-                black 525px,
-                black 550px, /* 525 + 25px feather */
-                transparent 550px
-            );
-            mask-image: radial-gradient(
-                circle at center,
-                transparent 0%,
-                transparent 525px,
-                black 525px,
-                black 550px,
-                transparent 550px
-            );
+            z-index: 1;
             pointer-events: none;
         }
         
-        .qqcc-container:hover .glow-effect {
+        .qqcc-section:hover ~ .glow-effect {
             opacity: 1;
+            animation: rotate 10s linear infinite;
         }
         
-        /* Content styling (same as before) */
+        /* Content styling */
         .text-box {
             flex: 1;
             padding: 20px;
@@ -138,21 +149,21 @@
         
         @keyframes rotate {
             from {
-                transform: rotate(0deg);
+                transform: translate(-50%, -50%) rotate(0deg);
             }
             to {
-                transform: rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg);
             }
         }
     </style>
 </head>
 <body>
-    <div class="qqcc-container">
-        <!-- Glow effect elements -->
-        <div class="glow-effect">
-            <img class="glow-image" src="Images/glow-texture.png" alt="Glow effect texture" onerror="glowImageError()">
-            <div class="glow-mask"></div>
-        </div>
+    <div class="container">
+        <!-- White Boxes -->
+        <div class="white-box top"></div>
+        <div class="white-box left"></div>
+        <div class="white-box right"></div>
+        <div class="white-box bottom"></div>
         
         <!-- QQCC Section -->
         <div class="qqcc-section">
@@ -165,15 +176,14 @@
                 <a href="https://gareth5827.github.io/QQCC/" target="_blank" class="quick-link">Check it out!</a>
             </div>
         </div>
+        
+        <!-- Rotating Image Effect -->
+        <div class="glow-effect"></div>
     </div>
 
     <script>
         function imageError() {
             console.debug("Placeholder image not found!");
-        }
-        
-        function glowImageError() {
-            console.debug("Glow effect image not found!");
         }
     </script>
 </body>
