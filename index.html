@@ -49,15 +49,25 @@
             opacity: 1;
         }
         
-        /* Border Image */
-        .border-image {
+        /* Border Images */
+        .border-left {
             position: fixed;
-            width: 100vw;
-            height: auto;
-            object-fit: contain;
-            z-index: 0;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: auto;
+            z-index: 10; /* Higher than other content */
             pointer-events: none;
-            transform: translateY(calc(var(--scroll) * -0.5));
+        }
+        
+        .border-right {
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            width: auto;
+            z-index: 9; /* Slightly below border-left */
+            pointer-events: none;
         }
         
         .text-box {
@@ -113,8 +123,9 @@
     </style>
 </head>
 <body>
-    <!-- Border Image (scales with screen and moves with scroll) -->
-    <img class="border-image" src="Images/BorderImage.png" alt="Decorative border" onerror="borderImageError()">
+    <!-- Border Images (fixed to sides, in front of content) -->
+    <img class="border-left" src="Images/BorderLeft.png" alt="Left border" onerror="borderImageError('left')">
+    <img class="border-right" src="Images/BorderRight.png" alt="Right border" onerror="borderImageError('right')">
     
     <div class="qqcc-section">
         <!-- Hover Effect Image -->
@@ -139,33 +150,28 @@
             console.debug("Hover effect image not found!");
         }
         
-        function borderImageError() {
-            console.debug("Border image not found!");
+        function borderImageError(side) {
+            console.debug(`Border ${side} image not found!`);
         }
         
-        // Scroll effect for border image
-        document.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            document.documentElement.style.setProperty('--scroll', scrollPosition + 'px');
-        });
-        
-        // Scale border image to window size
-        function resizeBorderImage() {
-            const borderImg = document.querySelector('.border-image');
-            if (borderImg) {
-                const aspectRatio = borderImg.naturalWidth / borderImg.naturalHeight;
-                if (window.innerWidth / window.innerHeight > aspectRatio) {
-                    borderImg.style.width = 'auto';
-                    borderImg.style.height = '100vh';
-                } else {
-                    borderImg.style.width = '100vw';
-                    borderImg.style.height = 'auto';
-                }
+        // Scale border images to window height
+        function resizeBorderImages() {
+            const borderLeft = document.querySelector('.border-left');
+            const borderRight = document.querySelector('.border-right');
+            
+            if (borderLeft) {
+                borderLeft.style.height = '100vh';
+                borderLeft.style.width = 'auto';
+            }
+            
+            if (borderRight) {
+                borderRight.style.height = '100vh';
+                borderRight.style.width = 'auto';
             }
         }
         
-        window.addEventListener('load', resizeBorderImage);
-        window.addEventListener('resize', resizeBorderImage);
+        window.addEventListener('load', resizeBorderImages);
+        window.addEventListener('resize', resizeBorderImages);
     </script>
 </body>
 </html>
