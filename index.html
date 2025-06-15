@@ -54,37 +54,20 @@
             position: fixed;
             left: 0;
             top: 0;
-            bottom: 0;
-            width: auto;  /* Let the image determine width */
-            height: 100%; /* Full height */
-            max-width: 30%; /* Prevent excessive width */
-            z-index: 10;
+            height: 100vh;
+            width: auto;
+            z-index: 10; /* Higher than other content */
             pointer-events: none;
-            object-fit: contain;
         }
         
         .border-right {
             position: fixed;
             right: 0;
             top: 0;
-            bottom: 0;
-            width: auto;  /* Let the image determine width */
-            height: 100%; /* Full height */
-            max-width: 30%; /* Prevent excessive width */
-            z-index: 9;
+            height: 100vh;
+            width: auto;
+            z-index: 9; /* Slightly below border-left */
             pointer-events: none;
-            object-fit: contain;
-        }
-        
-        /* Content container to prevent overlap */
-        .content-container {
-            position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            box-sizing: border-box;
-            z-index: 1;
         }
         
         .text-box {
@@ -144,19 +127,17 @@
     <img class="border-left" src="Images/BorderLeft.png" alt="Left border" onerror="borderImageError('left')">
     <img class="border-right" src="Images/BorderRight.png" alt="Right border" onerror="borderImageError('right')">
     
-    <div class="content-container">
-        <div class="qqcc-section">
-            <!-- Hover Effect Image -->
-            <img class="hover-effect" src="Images/HoverEffect.png" alt="Hover effect" onerror="hoverImageError()">
-            
-            <div class="text-box">
-                <h2>QQCC</h2>
-                <p>Check out QuickQuest Character Creator tool, over 1700+ combinations possible!</p>
-            </div>
-            <div class="image-box">
-                <img id="placeholder-image" src="Images/PlaceHolderImage.png" alt="QQCC Placeholder Image" onerror="imageError()">
-                <a href="https://gareth5827.github.io/QQCC/" target="_blank" class="quick-link">Check it out!</a>
-            </div>
+    <div class="qqcc-section">
+        <!-- Hover Effect Image -->
+        <img class="hover-effect" src="Images/HoverEffect.png" alt="Hover effect" onerror="hoverImageError()">
+        
+        <div class="text-box">
+            <h2>QQCC</h2>
+            <p>Check out QuickQuest Character Creator tool, over 1700+ combinations possible!</p>
+        </div>
+        <div class="image-box">
+            <img id="placeholder-image" src="Images/PlaceHolderImage.png" alt="QQCC Placeholder Image" onerror="imageError()">
+            <a href="https://gareth5827.github.io/QQCC/" target="_blank" class="quick-link">Check it out!</a>
         </div>
     </div>
 
@@ -173,40 +154,24 @@
             console.debug(`Border ${side} image not found!`);
         }
         
-        // Function to maintain proper border image scaling
-        function scaleBorderImages() {
+        // Scale border images to window height
+        function resizeBorderImages() {
             const borderLeft = document.querySelector('.border-left');
             const borderRight = document.querySelector('.border-right');
             
             if (borderLeft) {
-                // Maintain natural image aspect ratio
-                const aspectRatio = borderLeft.naturalWidth / borderLeft.naturalHeight;
-                const maxWidth = window.innerHeight * aspectRatio;
-                borderLeft.style.width = `${Math.min(maxWidth, window.innerWidth * 0.3)}px`;
+                borderLeft.style.height = '100vh';
+                borderLeft.style.width = 'auto';
             }
             
             if (borderRight) {
-                // Maintain natural image aspect ratio
-                const aspectRatio = borderRight.naturalWidth / borderRight.naturalHeight;
-                const maxWidth = window.innerHeight * aspectRatio;
-                borderRight.style.width = `${Math.min(maxWidth, window.innerWidth * 0.3)}px`;
+                borderRight.style.height = '100vh';
+                borderRight.style.width = 'auto';
             }
         }
         
-        // Wait for images to load before scaling
-        window.addEventListener('load', function() {
-            const borderLeft = document.querySelector('.border-left');
-            const borderRight = document.querySelector('.border-right');
-            
-            if (borderLeft.complete && borderRight.complete) {
-                scaleBorderImages();
-            } else {
-                borderLeft.addEventListener('load', scaleBorderImages);
-                borderRight.addEventListener('load', scaleBorderImages);
-            }
-        });
-        
-        window.addEventListener('resize', scaleBorderImages);
+        window.addEventListener('load', resizeBorderImages);
+        window.addEventListener('resize', resizeBorderImages);
     </script>
 </body>
 </html>
