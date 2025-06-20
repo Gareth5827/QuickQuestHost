@@ -21,13 +21,14 @@
         .qqcc-section {
             display: flex;
             background-image: url('Images/GeneralSection.png');
-            background-size: 750px 250px; /* Exact dimensions of the image */
-            width: 750px; /* Match image width */
-            height: 250px; /* Match image height */
+            background-size: 750px 250px;
+            width: 750px;
+            height: 250px;
             position: relative;
             z-index: 2;
-            overflow: hidden; /* Prevent content from spilling out */
-            background-color: transparent !important;
+            overflow: hidden;
+            background-color: transparent;
+            box-shadow: none;
         }
         
         /* Border Images */
@@ -52,61 +53,61 @@
         }
         
         .text-box {
-            flex: 1;
-            padding: 20px 20px 20px 30px; /* Adjusted padding to fit better */
+            flex: 2;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             z-index: 3;
-            box-sizing: border-box; /* Include padding in width calculation */
+            color: black; /* Text color changed to black */
         }
         
         .image-box {
             flex: 1;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end; /* Align button to right */
+            padding-right: 40px; /* Add some right padding */
             z-index: 3;
-            padding-right: 20px; /* Added right padding instead of using margin */
-            box-sizing: border-box;
-        }
-        
-        .image-box img {
-            max-width: 90%; /* Slightly reduced to ensure it fits */
-            max-height: 150px; /* Prevent image from being too tall */
-            object-fit: contain; /* Maintain aspect ratio */
         }
         
         .quick-link {
             display: inline-block;
-            padding: 8px 16px; /* Slightly smaller to fit better */
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            z-index: 3;
-            font-size: 0.9em; /* Slightly smaller font */
+            width: 150px; /* Button width */
+            height: 75px; /* Button height */
+            background-image: url('Images/ButtonImage.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            text-indent: -9999px; /* Hide text */
+            overflow: hidden;
         }
         
         .quick-link:hover {
-            background-color: #45a049;
+            opacity: 0.9; /* Simple hover effect */
         }
         
         h2 {
-            color: #333;
+            color: black; /* Header color changed to black */
             margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.5em; /* Adjusted for better fit */
+            margin-bottom: 15px;
+            font-size: 1.8em;
         }
         
         p {
-            color: #666;
-            line-height: 1.4; /* Tighter line spacing */
+            color: black; /* Paragraph color changed to black */
+            line-height: 1.5;
             margin: 0;
-            font-size: 0.9em; /* Slightly smaller text */
+        }
+        
+        a.artist-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a.artist-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -117,20 +118,21 @@
     
     <div class="qqcc-section">
         <div class="text-box">
-            <h2>QQCC</h2>
-            <p>Check out QuickQuest Character Creator tool, over 1700+ combinations possible!</p>
+            <h2>Character creator</h2>
+            <p>
+                Huge thanks to 
+                <a href="https://www.instagram.com/lilac_starss/" target="_blank" class="artist-link">@lilac_starss</a> 
+                and 
+                <a href="https://www.instagram.com/_elidrawsstuff_/" target="_blank" class="artist-link">@elidrawsstuff</a> 
+                for their AMAZING artwork!
+            </p>
         </div>
         <div class="image-box">
-            <img id="placeholder-image" src="Images/PlaceHolderImage.png" alt="QQCC Placeholder Image" onerror="imageError()">
-            <a href="https://gareth5827.github.io/QQCC/" target="_blank" class="quick-link">Check it out!</a>
+            <a href="https://gareth5827.github.io/QQCC/" target="_blank" class="quick-link">Make haste!</a>
         </div>
     </div>
 
     <script>
-        function imageError() {
-            console.debug("Placeholder image not found!");
-        }
-        
         function borderImageError(side) {
             console.debug(`Border ${side} image not found!`);
         }
