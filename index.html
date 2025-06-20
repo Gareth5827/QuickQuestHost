@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -19,7 +20,7 @@
             cursor: url('Images/RedCursor.png') 24 24, auto;
         }
         
-        .qqcc-section {
+        .qqgm-section, .qqcc-section {
             display: flex;
             background-image: url('Images/GeneralSection.png');
             background-size: 750px 250px;
@@ -30,26 +31,27 @@
             overflow: hidden;
             background-color: transparent;
             box-shadow: none;
+            margin-bottom: 20px;
         }
         
         /* Border Images */
-        .border-left {
+        .border-left, .border-right {
             position: fixed;
-            left: 0;
             top: 0;
             height: 100vh;
             width: auto;
             z-index: 10;
-            cursor: url('Images/RedCursor.png') 24 24, auto;
+        }
+        
+        .border-left {
+            left: 0;
         }
         
         .border-right {
-            position: fixed;
             right: 0;
-            top: 0;
-            height: 100vh;
-            width: auto;
-            z-index: 9;
+        }
+        
+        .border-left:hover, .border-right:hover {
             cursor: url('Images/RedCursor.png') 24 24, auto;
         }
         
@@ -107,8 +109,8 @@
         }
 
         a, button, .quick-link, [onclick], [role="button"] {
-    cursor: url('Images/HovCursor.png') 24 24, pointer !important;
-}
+            cursor: url('Images/HovCursor.png') 24 24, pointer !important;
+        }
         
         a.artist-link {
             color: #00dfff;
@@ -119,6 +121,10 @@
         a.artist-link:hover {
             text-decoration: underline;
         }
+        
+        .bold-text {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -126,6 +132,19 @@
     <img class="border-left" src="Images/BorderLeft.png" alt="Left border" onerror="borderImageError('left')">
     <img class="border-right" src="Images/BorderRight.png" alt="Right border" onerror="borderImageError('right')">
     
+    <!-- QQGM Section -->
+    <div class="qqgm-section">
+        <div class="text-box">
+            <h2>Game Runner</h2>
+            <p class="bold-text">Game Runner</p>
+            <p>This is a tool for running the beta campaign of QuickQuest!</p>
+        </div>
+        <div class="image-box">
+            <a href="#" target="_blank" class="quick-link">Set off!</a>
+        </div>
+    </div>
+    
+    <!-- QQCC Section -->
     <div class="qqcc-section">
         <div class="text-box">
             <h2>Character creator</h2>
