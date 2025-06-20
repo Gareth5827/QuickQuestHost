@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
+    <title>Welcome adventurer!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,9 @@
         
         .qqcc-section {
             display: flex;
-            background-color: white;
+            background-image: url('Images/GeneralSection.png');
+            background-size: cover;
+            background-position: center;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -28,25 +30,6 @@
             height: 250px;
             position: relative;
             z-index: 2;
-        }
-        
-        /* Hover Effect Image */
-        .hover-effect {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            object-fit: cover;
-            border-radius: 10px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .qqcc-section:hover .hover-effect {
-            opacity: 1;
         }
         
         /* Border Images */
@@ -128,9 +111,6 @@
     <img class="border-right" src="Images/BorderRight.png" alt="Right border" onerror="borderImageError('right')">
     
     <div class="qqcc-section">
-        <!-- Hover Effect Image -->
-        <img class="hover-effect" src="Images/HoverEffect.png" alt="Hover effect" onerror="hoverImageError()">
-        
         <div class="text-box">
             <h2>QQCC</h2>
             <p>Check out QuickQuest Character Creator tool, over 1700+ combinations possible!</p>
@@ -144,10 +124,6 @@
     <script>
         function imageError() {
             console.debug("Placeholder image not found!");
-        }
-        
-        function hoverImageError() {
-            console.debug("Hover effect image not found!");
         }
         
         function borderImageError(side) {
