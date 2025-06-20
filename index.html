@@ -21,15 +21,14 @@
         .qqcc-section {
             display: flex;
             background-image: url('Images/GeneralSection.png');
-            background-size: cover;
-            background-position: center;
+            background-size: 750px 250px; /* Exact dimensions of the image */
+            width: 750px; /* Match image width */
+            height: 250px; /* Match image height */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 750px;
-            height: 250px;
             position: relative;
             z-index: 2;
+            overflow: hidden; /* Prevent content from spilling out */
         }
         
         /* Border Images */
@@ -39,7 +38,7 @@
             top: 0;
             height: 100vh;
             width: auto;
-            z-index: 10; /* Higher than other content */
+            z-index: 10;
             pointer-events: none;
         }
         
@@ -49,17 +48,18 @@
             top: 0;
             height: 100vh;
             width: auto;
-            z-index: 9; /* Slightly below border-left */
+            z-index: 9;
             pointer-events: none;
         }
         
         .text-box {
             flex: 1;
-            padding: 20px;
+            padding: 20px 20px 20px 30px; /* Adjusted padding to fit better */
             display: flex;
             flex-direction: column;
             justify-content: center;
             z-index: 3;
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         
         .image-box {
@@ -69,17 +69,19 @@
             align-items: center;
             justify-content: center;
             z-index: 3;
+            padding-right: 20px; /* Added right padding instead of using margin */
+            box-sizing: border-box;
         }
         
         .image-box img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 15px;
+            max-width: 90%; /* Slightly reduced to ensure it fits */
+            max-height: 150px; /* Prevent image from being too tall */
+            object-fit: contain; /* Maintain aspect ratio */
         }
         
         .quick-link {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 8px 16px; /* Slightly smaller to fit better */
             background-color: #4CAF50;
             color: white;
             text-decoration: none;
@@ -87,7 +89,7 @@
             font-weight: bold;
             transition: background-color 0.3s;
             z-index: 3;
-            position: relative;
+            font-size: 0.9em; /* Slightly smaller font */
         }
         
         .quick-link:hover {
@@ -97,16 +99,20 @@
         h2 {
             color: #333;
             margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.5em; /* Adjusted for better fit */
         }
         
         p {
             color: #666;
-            line-height: 1.6;
+            line-height: 1.4; /* Tighter line spacing */
+            margin: 0;
+            font-size: 0.9em; /* Slightly smaller text */
         }
     </style>
 </head>
 <body>
-    <!-- Border Images (fixed to sides, in front of content) -->
+    <!-- Border Images -->
     <img class="border-left" src="Images/BorderLeft.png" alt="Left border" onerror="borderImageError('left')">
     <img class="border-right" src="Images/BorderRight.png" alt="Right border" onerror="borderImageError('right')">
     
@@ -130,7 +136,6 @@
             console.debug(`Border ${side} image not found!`);
         }
         
-        // Scale border images to window height
         function resizeBorderImages() {
             const borderLeft = document.querySelector('.border-left');
             const borderRight = document.querySelector('.border-right');
