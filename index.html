@@ -35,14 +35,28 @@
         }
         
         .small-board-section {
-            background-image: url('Images/Smallboard/SmallBoard');
+            background-image: url('Images/Smallboard');
             background-size: cover;
             width: 400px;
             height: 150px;
             position: fixed;
-            left: 100px;
-            bottom: 100px;
+            left: 50px; /* Changed from 100px to 50px */
+            bottom: 50px; /* Changed from 100px to 50px */
             z-index: 3;
+        }
+        
+        .h2p-section {
+            display: flex;
+            background-image: url('Images/Smallboard');
+            background-size: cover;
+            width: 400px;
+            height: 150px;
+            position: relative;
+            z-index: 2;
+            margin: 20px auto; /* Centers the section */
+            justify-content: center;
+            align-items: center;
+            text-align: center; /* Centers the text */
         }
         
         /* Border Images */
@@ -239,7 +253,6 @@
     <!-- H2P Section (under QQCC) -->
     <div class="h2p-section">
         <div class="text-box">
-            <h2>Help & Tutorial</h2>
             <p>Need help? Find out how to play <span class="here-link" id="showTutorial">HERE</span>!</p>
         </div>
     </div>
