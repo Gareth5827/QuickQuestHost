@@ -170,14 +170,14 @@
             font-weight: bold;
         }
         
-        /* Tutorial Popup Styles */
+        /* Updated Tutorial Popup Styles */
         .tutorial-popup {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 500px;
-            height: 400px;
+            height: 400px; /* Fixed height */
             background-color: white;
             border: 3px solid #000;
             border-radius: 10px;
@@ -185,20 +185,31 @@
             display: none;
             padding: 20px;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            overflow: hidden; /* Hide overflow from main container */
         }
         
-        .tutorial-popup .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: url('Images/RedCursor.png') 24 24, pointer;
-            color: #ff0000;
+        .tutorial-content {
+            height: calc(100% - 60px); /* Subtract space for heading and close button */
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-right: 10px; /* Prevent text from touching scrollbar */
         }
         
-        .tutorial-popup .close-btn:hover {
-            color: #cc0000;
+        .tutorial-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .tutorial-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        
+        .tutorial-content::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        .tutorial-content::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
         
         .here-link {
@@ -268,36 +279,38 @@
     <div class="tutorial-popup" id="tutorialPopup">
         <span class="close-btn" id="closeTutorial">X</span>
         <h2>QuickQuest Tutorial</h2>
-        <p>
-            QuickQuest is all about speed, creativity, and teamwork.
-            <br><br>
-            When you create a character, you will be given random weapons, spells, and passives, and it's your job to use what you're given and complete a quest with your team.
-            <br><br>
-            Unless specified, use a D20 for a roll. Rolls usually require a modifier as well (like 1D4 + END - meaning roll 1 D4 and add your END value)
-            <br>
-            Some rolls may require a proficiency (like a Perception roll - meaning roll 1 D20 and add your Perception bonus. If you don't have any Perception, it's just a regular D20 roll)
-            <br><br>
-            Your spells and actions in the game have tags (like [Attack] [Spell] [Fire], etc). These tags tell you information about the action.
-            <br>
-            <ul style="margin-top: 0; padding-left: 20px;">
-                <li>[Attack] rolls are attacks and you use 1D20 + AGI to see if it hits</li>
-                <li>[Spell] rolls are spells and you use 1D20 + WIT to see if it hits</li>
-                <li>[Fire] actions can burn stuff and make fire</li>
-                <li>[Water] actions can create water and extinguish stuff</li>
-                <li>[Terrain] actions can create terrain</li>
-                <li>[Poison] actions can poison stuff</li>
-                <li>[Light] actions can make light</li>
-            </ul>
-            If your action doesn't have an [Attack] or [Spell] tag, then it automatically hits!
-            <br><br>
-            When being hit by [Attack]s, the attacker needs to make an [Attack] roll and get higher than your Swiftness.
-            <br>
-            When being hit by [Spell]s, the caster needs to make a [Spell] roll and get higher than your Spirit.
-            <br><br>
-            When attacking an enemy, you need to make an [Attack] roll that is equal to or more than their Swiftness.
-            <br>
-            When casting an enemy, you need to make a [Spell] roll that is equal to or more than their Spirit.
-        </p>
+        <div class="tutorial-content">
+            <p>
+                QuickQuest is all about speed, creativity, and teamwork.
+                <br><br>
+                When you create a character, you will be given random weapons, spells, and passives, and it's your job to use what you're given and complete a quest with your team.
+                <br><br>
+                Unless specified, use a D20 for a roll. Rolls usually require a modifier as well (like 1D4 + END - meaning roll 1 D4 and add your END value)
+                <br>
+                Some rolls may require a proficiency (like a Perception roll - meaning roll 1 D20 and add your Perception bonus. If you don't have any Perception, it's just a regular D20 roll)
+                <br><br>
+                Your spells and actions in the game have tags (like [Attack] [Spell] [Fire], etc). These tags tell you information about the action.
+                <br>
+                <ul style="margin-top: 0; padding-left: 20px;">
+                    <li>[Attack] rolls are attacks and you use 1D20 + AGI to see if it hits</li>
+                    <li>[Spell] rolls are spells and you use 1D20 + WIT to see if it hits</li>
+                    <li>[Fire] actions can burn stuff and make fire</li>
+                    <li>[Water] actions can create water and extinguish stuff</li>
+                    <li>[Terrain] actions can create terrain</li>
+                    <li>[Poison] actions can poison stuff</li>
+                    <li>[Light] actions can make light</li>
+                </ul>
+                If your action doesn't have an [Attack] or [Spell] tag, then it automatically hits!
+                <br><br>
+                When being hit by [Attack]s, the attacker needs to make an [Attack] roll and get higher than your Swiftness.
+                <br>
+                When being hit by [Spell]s, the caster needs to make a [Spell] roll and get higher than your Spirit.
+                <br><br>
+                When attacking an enemy, you need to make an [Attack] roll that is equal to or more than their Swiftness.
+                <br>
+                When casting an enemy, you need to make a [Spell] roll that is equal to or more than their Spirit.
+            </p>
+        </div>
     </div>
 
     <script>
