@@ -170,14 +170,14 @@
             font-weight: bold;
         }
         
-        /* Updated Tutorial Popup Styles */
+        /* Tutorial Popup Styles */
         .tutorial-popup {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 500px;
-            height: 400px; /* Fixed height */
+            height: 400px;
             background-color: white;
             border: 3px solid #000;
             border-radius: 10px;
@@ -185,15 +185,30 @@
             display: none;
             padding: 20px;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            overflow: hidden; /* Hide overflow from main container */
+            overflow: hidden;
+        }
+        
+        .tutorial-popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: url('Images/RedCursor.png') 24 24, pointer;
+            color: #ff0000;
+        }
+        
+        .tutorial-popup .close-btn:hover {
+            color: #cc0000;
         }
         
         .tutorial-content {
-            height: calc(100% - 60px); /* Subtract space for heading and close button */
-            overflow-y: auto; /* Enable vertical scrolling */
-            padding-right: 10px; /* Prevent text from touching scrollbar */
+            height: calc(100% - 60px);
+            overflow-y: auto;
+            padding-right: 10px;
         }
         
+        /* Keep your scrollbar styling */
         .tutorial-content::-webkit-scrollbar {
             width: 8px;
         }
