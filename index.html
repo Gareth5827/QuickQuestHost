@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome adventurer!</title>
     <style>
+        .secret-link {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50px;   /* size of the hotspot */
+    height: 50px;
+    z-index: 999;  /* above everything else */
+    background: transparent; /* invisible */
+    text-decoration: none;
+    cursor: pointer; /* normal pointer change */
+}
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -240,6 +251,7 @@
     </style>
 </head>
 <body>
+    <a href="https://gareth5827.github.io/NewD-DV/" class="secret-link"></a>
     <!-- Background Board Image -->
     <div class="board-background"></div>
     
